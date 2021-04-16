@@ -6,7 +6,7 @@ class Player
 {
 private:
 	// Attributes
-	// Generaly speaking attributes should only be changed by their public methods
+	// Generally speaking, attributes should only be changed by their public methods
 
 	std::string name{};
 	int health{};
@@ -14,8 +14,8 @@ private:
 	int offence{};
 	int defence{};
 
-	int x_coordinate{10};
-	int y_coordinate{11};
+	int x_coordinate{1};
+	int y_coordinate{1};
 	char player_symbol{ 'X' };
 
 
@@ -24,11 +24,12 @@ public:
 	void set_name(std::string name);
 
 	// Contructor
-	Player(int health, int exp, int offence, int defence);
+	Player();
 
 	// Dollar sign used to express it returns a value from private access
 	std::string $name();
 	int $x_coordinate();
 	int $y_coordinate();
+	char $symbol();
 };
 

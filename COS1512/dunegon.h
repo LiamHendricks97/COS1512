@@ -12,8 +12,15 @@ private:
 	std::vector <std::vector<char>> level{};
 
 public:
+	Dungeon(Player Hero);
+
 	void draw_level();
 	void display_level();
+	void put_hero_in_level(Player Hero);
+
 	std::vector<int> get_player_coordinates(Player hero);
+	int $x_axis_size();
+	int $y_axis_size();
+
 
 };

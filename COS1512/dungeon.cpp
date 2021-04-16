@@ -1,4 +1,25 @@
 #include "dunegon.h"
+#include "player.h"
+
+Dungeon::Dungeon(Player Hero)
+{
+	draw_level();
+	put_hero_in_level(Hero);
+	display_level();
+}
+
+
+void Dungeon::put_hero_in_level(Player Hero)
+{
+	int x_coordinate{ Hero.$x_coordinate() };
+	int y_coordinate{ Hero.$y_coordinate() };
+
+	if (level.at(y_coordinate).at(x_coordinate) != '#')
+	{
+		level.at(y_coordinate).at(x_coordinate) = Hero.$symbol();
+	}
+}
+
 
 void Dungeon::draw_level()
 {
@@ -45,4 +66,14 @@ std::vector<int> Dungeon::get_player_coordinates(Player hero)
 	int y = hero.$y_coordinate();
 	std::vector<int>player_coordinates{x, y};
 	return player_coordinates;
+}
+
+int Dungeon::$x_axis_size()
+{
+	return x_axis_size;
+}
+
+int Dungeon::$y_axis_size()
+{
+	return y_axis_size;
 }

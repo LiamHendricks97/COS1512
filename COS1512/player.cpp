@@ -21,11 +21,13 @@ int Player::$y_coordinate()
 {
 	return y_coordinate;
 }
-////////////////////////////////////////
-Player::Player(int health, int exp, int offence, int defence)
+
+char Player::$symbol()
 {
-	this->health = health;
-	this->exp = exp;
-	this->offence = offence;
-	this->defence = defence;
+	return player_symbol;
+}
+////////////////////////////////////////
+Player::Player()
+	:health{100}, exp{}, offence{10}, defence{11}
+{
 }
