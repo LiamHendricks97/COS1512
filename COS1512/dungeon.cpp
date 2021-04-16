@@ -2,7 +2,6 @@
 
 void Dungeon::draw_level()
 {
-	//get_player_coordinates()
 	std::vector <std::vector <char >> level(y_axis_size, std::vector<char>(x_axis_size));
 	for (int i{}; i < y_axis_size; i++)
 	{
