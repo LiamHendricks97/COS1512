@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClCompile Include="dungeon.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="manager.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dunegon.h" />
+    <ClInclude Include="manager.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
