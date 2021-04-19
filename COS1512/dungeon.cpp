@@ -5,7 +5,7 @@ Dungeon::Dungeon(Player Hero)
 {
 	draw_level();
 	put_hero_in_level(Hero);
-	display_level();
+	//display_level();
 }
 
 
@@ -18,6 +18,14 @@ void Dungeon::put_hero_in_level(Player Hero)
 	{
 		level.at(y_coordinate).at(x_coordinate) = Hero.$symbol();
 	}
+}
+
+void Dungeon::set_current_pos_blank(Player Hero)
+{
+	int x_coordinate{ Hero.$x_coordinate() };
+	int y_coordinate{ Hero.$y_coordinate() };
+
+	level.at(y_coordinate).at(x_coordinate) = '*';
 }
 
 

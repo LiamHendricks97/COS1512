@@ -6,6 +6,15 @@ void Player::set_name(std::string name)
 	this->name = name;
 }
 
+void Player::set_x_coordinate(int coordinate)
+{
+	this->x_coordinate = coordinate;
+}
+
+void Player::set_y_coordinate(int coordinate)
+{
+	this->y_coordinate = coordinate;
+}
 /////////////////////////////////////////////
 std::string Player::$name()
 {
