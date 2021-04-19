@@ -15,7 +15,7 @@ private:
 	int offence{};
 	int defence{};
 
-	int x_coordinate{25};
+	int x_coordinate{10};
 	int y_coordinate{10};
 	char player_symbol{ 'X' };
 
@@ -24,7 +24,7 @@ public:
 	// Method prototypes
 	void set_name(std::string name);
 	void set_x_coordinate(int coordinate);
-	void set_y_coordinate(int coordinate, Dungeon dunegon);
+	void set_y_coordinate(int coordinate, Dungeon dungeon);
 
 	// Contructor
 	Player();

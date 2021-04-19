@@ -15,8 +15,7 @@ void Player::set_y_coordinate(int coordinate, Dungeon dungeon)
 {
 	if ((coordinate > 0) && (coordinate < dungeon.$y_axis_size()))
 	{
-		this->y_coordinate = coordinate;
-		std::cout << "player moved" << std::endl;
+		y_coordinate = coordinate;
 	}
 }
 /////////////////////////////////////////////

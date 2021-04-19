@@ -13,6 +13,24 @@ char Dungeon::get_input()
 	return move_direction;
 }
 
+void Dungeon::test(Player player, Dungeon dungeon, char direction)
+{
+
+	std::cout << "\033[2J\033[1;1H";
+	dungeon.set_current_pos_blank(player);
+	if (direction == KEY_UP)
+	{
+		player.set_y_coordinate(player.$y_coordinate() - 1, dungeon);
+	}
+	else if (direction == KEY_DOWN)
+	{
+		player.set_y_coordinate(player.$y_coordinate() + 1, dungeon);
+	}
+	dungeon.place_player(player);
+	dungeon.display_level();
+
+}
+
 void Dungeon::move_player(Player player, Dungeon dungeon)
 {
 	bool run{ true };
@@ -33,6 +51,7 @@ void Dungeon::move_player(Player player, Dungeon dungeon)
 			player.set_y_coordinate(player.$y_coordinate() - 1, dungeon); // Move player one space up
 			dungeon.place_player(player);
 			dungeon.display_level();
+			//test(player, dungeon, move_direction);
 		}
 		else if (move_direction == KEY_DOWN)
 		{

@@ -21,6 +21,8 @@ private:
 public:
 	Dungeon(Player player);
 
+	void test(Player player, Dungeon dungeon, char direction);
+
 	void draw_level();
 	void display_level();
 	char get_input();
