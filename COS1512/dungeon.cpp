@@ -6,13 +6,19 @@ Dungeon::Dungeon(Player player)
 	place_player(player);
 }
 
-void Dungeon::move_player(Player player, Dungeon dungeon)
+char Dungeon::get_input()
 {
 	char move_direction{};
+	move_direction = _getch();
+	return move_direction;
+}
+
+void Dungeon::move_player(Player player, Dungeon dungeon)
+{
 	bool run{ true };
 	while (run)
 	{
-		move_direction = _getch();
+		char move_direction = get_input();
 
 		if (move_direction == 'q')
 		{

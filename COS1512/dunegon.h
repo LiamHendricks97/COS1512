@@ -23,6 +23,7 @@ public:
 
 	void draw_level();
 	void display_level();
+	char get_input();
 	void place_player(Player player);
 	void set_current_pos_blank(Player player);
 	void move_player(Player player, Dungeon dungeon);
