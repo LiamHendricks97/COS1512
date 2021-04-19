@@ -1,37 +1,73 @@
 #include "dunegon.h"
-#include "player.h"
 
-Dungeon::Dungeon(Player Hero)
+Dungeon::Dungeon(Player player)
 {
 	draw_level();
-	put_hero_in_level(Hero);
-	//display_level();
+	place_player(player);
 }
 
-
-void Dungeon::put_hero_in_level(Player Hero)
+void Dungeon::move_player(Player player, Dungeon dungeon)
 {
-	int x_coordinate{ Hero.$x_coordinate() };
-	int y_coordinate{ Hero.$y_coordinate() };
-
-	if (level.at(y_coordinate).at(x_coordinate) != '#')
+	char move_direction{};
+	bool run{ true };
+	while (run)
 	{
-		level.at(y_coordinate).at(x_coordinate) = Hero.$symbol();
+		move_direction = _getch();
+
+		if (move_direction == 'q')
+		{
+			std::cout << "Thanks for playing" << std::endl;
+			run = false;
+		}
+
+		else if (move_direction == KEY_UP)
+		{
+			std::cout << "\033[2J\033[1;1H";
+			dungeon.set_current_pos_blank(player);
+			player.set_y_coordinate(player.$y_coordinate() - 1, dungeon); // Move player one space up
+			dungeon.place_player(player);
+			dungeon.display_level();
+		}
+		else if (move_direction == KEY_DOWN)
+		{
+			//std::cout << "DOWN";
+		}
+		else if (move_direction == KEY_LEFT)
+		{
+			//std::cout << "LEFT";
+		}
+		else if (move_direction == KEY_RIGHT)
+		{
+			//std::cout << "RIGHT";
+		}
+		// convert above to a switch statement
 	}
 }
 
-void Dungeon::set_current_pos_blank(Player Hero)
+
+void Dungeon::place_player(Player player)
 {
-	int x_coordinate{ Hero.$x_coordinate() };
-	int y_coordinate{ Hero.$y_coordinate() };
+	int x_coordinate{ player.$x_coordinate() };
+	int y_coordinate{ player.$y_coordinate() };
+
+	if ((level.at(y_coordinate).at(x_coordinate) != '#'))
+	{
+		level.at(y_coordinate).at(x_coordinate) = player.$symbol();
+	}
+}
+
+void Dungeon::set_current_pos_blank(Player player)
+{
+	int x_coordinate{ player.$x_coordinate() };
+	int y_coordinate{ player.$y_coordinate() };
 
 	level.at(y_coordinate).at(x_coordinate) = '*';
 }
 
-
+// Creates level from scratch
 void Dungeon::draw_level()
 {
-	std::vector <std::vector <char >> level(y_axis_size, std::vector<char>(x_axis_size));
+	std::vector <std::vector <char>> level(y_axis_size, std::vector<char>(x_axis_size));
 	for (int i{}; i < y_axis_size; i++)
 	{
 		for (int j{}; j < x_axis_size; j++)
@@ -51,7 +87,7 @@ void Dungeon::draw_level()
 	this->level = level;
 }
 
-
+// displays level from: attribute level
 void Dungeon::display_level()
 {
 	for (int i{}; i < y_axis_size; i++)
@@ -68,10 +104,10 @@ void Dungeon::display_level()
 	}
 }
 
-std::vector<int> Dungeon::get_player_coordinates(Player hero)
+std::vector<int> Dungeon::get_player_coordinates(Player player)
 {
-	int x = hero.$x_coordinate();
-	int y = hero.$y_coordinate();
+	int x = player.$x_coordinate();
+	int y = player.$y_coordinate();
 	std::vector<int>player_coordinates{x, y};
 	return player_coordinates;
 }

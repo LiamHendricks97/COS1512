@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+class Dungeon; // Fwd declaration together with the #include at the bottom
 class Player
 {
 private:
@@ -23,7 +24,7 @@ public:
 	// Method prototypes
 	void set_name(std::string name);
 	void set_x_coordinate(int coordinate);
-	void set_y_coordinate(int coordinate);
+	void set_y_coordinate(int coordinate, Dungeon dunegon);
 
 	// Contructor
 	Player();
@@ -38,3 +39,5 @@ public:
 	char $symbol();
 };
 
+
+#include "dunegon.h"

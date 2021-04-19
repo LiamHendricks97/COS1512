@@ -11,9 +11,13 @@ void Player::set_x_coordinate(int coordinate)
 	this->x_coordinate = coordinate;
 }
 
-void Player::set_y_coordinate(int coordinate)
+void Player::set_y_coordinate(int coordinate, Dungeon dungeon)
 {
-	this->y_coordinate = coordinate;
+	if ((coordinate > 0) && (coordinate < dungeon.$y_axis_size()))
+	{
+		this->y_coordinate = coordinate;
+		std::cout << "player moved" << std::endl;
+	}
 }
 /////////////////////////////////////////////
 std::string Player::$name()
@@ -38,5 +42,4 @@ char Player::$symbol()
 ////////////////////////////////////////
 Player::Player()
 	:health{100}, exp{}, offence{10}, defence{11}
-{
-}
+{}
