@@ -2,7 +2,7 @@
 
 Dungeon::Dungeon(Player player)
 {
-	draw_level();
+	draw_initial_level();
 	place_player_dungeon(player);
 }
 
@@ -20,6 +20,7 @@ void Dungeon::position_player(Player& player, Dungeon& dungeon, char direction)
 	dungeon.set_tile_blank(player);
 	switch (direction)
 	{
+		// make this case work by changing only the tile that needs to be changed
 	case KEY_UP:
 		player.set_y_coordinate(player.$y_coordinate() - 1, dungeon);
 		break;
@@ -86,7 +87,7 @@ void Dungeon::set_tile_blank(Player player)
 }
 
 // Creates level from scratch
-void Dungeon::draw_level()
+void Dungeon::draw_initial_level()
 {
 	std::vector <std::vector <char>> level(y_axis_size, std::vector<char>(x_axis_size));
 	for (int i{}; i < y_axis_size; i++)

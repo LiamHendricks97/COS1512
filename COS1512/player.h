@@ -9,7 +9,7 @@ private:
 	// Attributes
 	// Generally speaking, attributes should only be changed by their public methods
 
-	std::string name{};
+	std::string name{"OLDMAN"};
 	int health{};
 	int exp{};
 	int offence{};

@@ -24,7 +24,7 @@ public:
 	Dungeon(Player player);
 
 	char get_input();
-	void draw_level();
+	void draw_initial_level();
 	void place_player_dungeon(Player player);
 	void display_level();
 
