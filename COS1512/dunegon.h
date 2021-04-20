@@ -6,6 +6,7 @@
 
 #include "player.h"
 
+// controls & defines
 constexpr auto KEY_UP = 72;
 constexpr auto KEY_DOWN = 80;
 constexpr auto KEY_LEFT = 75;
