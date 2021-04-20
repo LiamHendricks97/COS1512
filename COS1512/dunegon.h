@@ -3,6 +3,7 @@
 #include <vector>
 
 #include <conio.h>
+#include <windows.h>
 
 #include "player.h"
 
@@ -22,6 +23,11 @@ private:
 public:
 	// Default constructor
 	Dungeon(Player player);
+
+	void test(Player& player, Dungeon& dungeon);
+	void cls();
+	void set_cursor_position(int x, int y);
+
 
 	char get_input();
 	void draw_initial_level();

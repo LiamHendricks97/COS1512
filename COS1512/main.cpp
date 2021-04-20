@@ -14,7 +14,7 @@
 
 // Blanks screen
 void cls();
-void setCursorPosition(int x, int y);
+void set_cursor_position(int x, int y);
 
 int main()
 {	
@@ -29,22 +29,23 @@ int main()
 	cls();
 
 	Base.display_level();
-	Base.move_player(Hero, Base);
+	//Base.move_player(Hero, Base);
+	Base.test(Hero, Base);
 
 	// test	
-	setCursorPosition(10, 5);
+	set_cursor_position(10, 5);
 	std::cout << "CHEESE";
-	setCursorPosition(10, 5);
+	set_cursor_position(10, 5);
 	std::cout << 'W';
-	setCursorPosition(11, 5);
+	set_cursor_position(11, 5);
 	std::cout << 'H';
-	setCursorPosition(12, 5);
+	set_cursor_position(12, 5);
 	std::cout << 'E';
-	setCursorPosition(13, 5);
+	set_cursor_position(13, 5);
 	std::cout << 'E';
-	setCursorPosition(14, 5);
+	set_cursor_position(14, 5);
 	std::cout << 'Z';
-	setCursorPosition(15, 5);
+	set_cursor_position(15, 5);
 	std::cout << 'E';
 	std::cout.flush();
 	//cls();
@@ -88,7 +89,7 @@ void cls()
 	SetConsoleCursorPosition(hOut, topLeft);
 }
 
-void setCursorPosition(int x, int y)
+void set_cursor_position(int x, int y)
 {
 	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	std::cout.flush();

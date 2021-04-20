@@ -9,10 +9,102 @@ Dungeon::Dungeon(Player player)
 /// ////////////////////////////////////////////////////////////////////////
 char Dungeon::get_input()
 {
-	char move_direction{};
-	move_direction = _getch();
+	char move_direction = _getch() ;
 	return move_direction;
 }
+
+void Dungeon::cls()
+{
+	// Get the Win32 handle representing standard output.
+	// This generally only has to be done once, so we make it static.
+	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	COORD topLeft = { 0, 0 };
+
+	// std::cout uses a buffer to batch writes to the underlying console.
+	// We need to flush that to the console because we're circumventing
+	// std::cout entirely; after we clear the console, we don't want
+	// stale buffered text to randomly be written out.
+	std::cout.flush();
+
+	// Figure out the current width and height of the console window
+	if (!GetConsoleScreenBufferInfo(hOut, &csbi)) {
+		// TODO: Handle failure!
+		abort();
+	}
+	DWORD length = csbi.dwSize.X * csbi.dwSize.Y;
+
+	DWORD written;
+
+	// Flood-fill the console with spaces to clear it
+	FillConsoleOutputCharacter(hOut, TEXT(' '), length, topLeft, &written);
+
+	// Reset the attributes of every character to the default.
+	// This clears all background colour formatting, if any.
+	FillConsoleOutputAttribute(hOut, csbi.wAttributes, length, topLeft, &written);
+
+	// Move the cursor back to the top left for the next sequence of writes
+	SetConsoleCursorPosition(hOut, topLeft);
+}
+
+void Dungeon::set_cursor_position(int x, int y)
+{
+	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	std::cout.flush();
+	COORD coord = { (SHORT)x, (SHORT)y };
+	SetConsoleCursorPosition(hOut, coord);
+}
+
+void Dungeon::test(Player& player, Dungeon& dungeon)
+// why need DJ para?
+// below code needs to be cleaned, refer to page and 'big O writing code'
+{
+	bool run{ true };
+	while (run)
+	{
+		char direction = get_input();
+		int x_coord{ player.$x_coordinate() };
+		int y_coord{ player.$y_coordinate() };
+		switch (direction)
+		{
+		case 'q':
+			std::cout << "Thanks for playing" << std::endl;
+			run = false;
+			break;
+		case KEY_UP:
+			set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
+			std::cout << '*';
+			player.set_y_coordinate(player.$y_coordinate() - 1, dungeon);
+			set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
+			std::cout << player.$symbol();
+			break;
+		case KEY_DOWN:
+			break;
+		case KEY_LEFT:
+			break;
+		case KEY_RIGHT:
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void Dungeon::position_player(Player& player, Dungeon& dungeon, char direction)
 {
@@ -21,6 +113,7 @@ void Dungeon::position_player(Player& player, Dungeon& dungeon, char direction)
 	switch (direction)
 	{
 		// make this case work by changing only the tile that needs to be changed
+		// the basic idea is to first visually change what needs to be done AND THEN only save those changes to the appropriate attribute
 	case KEY_UP:
 		player.set_y_coordinate(player.$y_coordinate() - 1, dungeon);
 		break;
