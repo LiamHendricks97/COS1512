@@ -16,8 +16,9 @@ constexpr auto KEY_RIGHT = 77;
 class Dungeon
 {
 private:
-	int x_axis_size{ 50 };
-	int y_axis_size{ 20 };
+	int x_axis_size{ 50};
+	int y_axis_size{ 20};
+	char blank_tile{'*'};
 	std::vector <std::vector<char>> level{};
 
 public:
@@ -25,6 +26,9 @@ public:
 	Dungeon(Player player);
 
 	void test(Player& player, Dungeon& dungeon);
+	void test2(Player& player, Dungeon& dungeon, int direction);
+
+
 	void cls();
 	void set_cursor_position(int x, int y);
 

@@ -15,8 +15,8 @@ private:
 	int offence{};
 	int defence{};
 
-	int x_coordinate{10};
-	int y_coordinate{10};
+	int x_coordinate{1};
+	int y_coordinate{1};
 	char player_symbol{ 'X' };
 
 

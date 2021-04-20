@@ -56,64 +56,13 @@ void Dungeon::set_cursor_position(int x, int y)
 	SetConsoleCursorPosition(hOut, coord);
 }
 
-void Dungeon::test(Player& player, Dungeon& dungeon)
-// why need DJ para?
-// below code needs to be cleaned, refer to page and 'big O writing code'
+void Dungeon::test2(Player& player, Dungeon& dungeon, int direction)
 {
-	bool run{ true };
-	while (run)
-	{
-		char direction = get_input();
-		int x_coord{ player.$x_coordinate() };
-		int y_coord{ player.$y_coordinate() };
-		switch (direction)
-		{
-		case 'q':
-			std::cout << "Thanks for playing" << std::endl;
-			run = false;
-			break;
-		case KEY_UP:
-			set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
-			std::cout << '*';
-			player.set_y_coordinate(player.$y_coordinate() - 1, dungeon);
-			set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
-			std::cout << player.$symbol();
-			break;
-		case KEY_DOWN:
-			break;
-		case KEY_LEFT:
-			break;
-		case KEY_RIGHT:
-			break;
-		default:
-			break;
-		}
-	}
-}
+	set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
+	std::cout <<blank_tile;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void Dungeon::position_player(Player& player, Dungeon& dungeon, char direction)
-{
-	std::cout << "\033[2J\033[1;1H";
-	dungeon.set_tile_blank(player);
 	switch (direction)
 	{
-		// make this case work by changing only the tile that needs to be changed
-		// the basic idea is to first visually change what needs to be done AND THEN only save those changes to the appropriate attribute
 	case KEY_UP:
 		player.set_y_coordinate(player.$y_coordinate() - 1, dungeon);
 		break;
@@ -129,11 +78,14 @@ void Dungeon::position_player(Player& player, Dungeon& dungeon, char direction)
 	default:
 		break;
 	}
-	dungeon.place_player_dungeon(player);
-	dungeon.display_level();
+
+	set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
+	std::cout << player.$symbol();
 }
 
-void Dungeon::move_player(Player& player, Dungeon& dungeon)
+void Dungeon::test(Player& player, Dungeon& dungeon)
+// why need DJ para?
+// below code needs to be cleaned, refer to page and 'big O writing code'
 {
 	bool run{ true };
 	while (run)
@@ -142,23 +94,24 @@ void Dungeon::move_player(Player& player, Dungeon& dungeon)
 		switch (direction)
 		{
 		case 'q':
-			std::cout << "Thanks for playing" << std::endl;
 			run = false;
+			break;
 		case KEY_UP:
-			position_player(player, dungeon, direction);
+			test2(player, dungeon, direction);
 			break;
 		case KEY_DOWN:
-			position_player(player, dungeon, direction);
+			test2(player, dungeon, direction);
 			break;
 		case KEY_LEFT:
-			position_player(player, dungeon, direction);
+			test2(player, dungeon, direction);
 			break;
 		case KEY_RIGHT:
-			position_player(player, dungeon, direction);
+			test2(player, dungeon, direction);
 			break;
 		default:
 			break;
 		}
+		// Change back to if statement EG if (UP DOWN LEFT RIGHT){do} else {quit}
 	}
 }
 
