@@ -23,7 +23,7 @@ void ShowConsoleCursor(bool showFlag)
 	cursorInfo.bVisible = showFlag;
 	SetConsoleCursorInfo(out, &cursorInfo);
 }
-
+// move above along with the cls and setcursor to a object called console
 
 int main()
 {	
