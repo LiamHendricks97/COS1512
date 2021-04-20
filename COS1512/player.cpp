@@ -6,6 +6,7 @@ Player::Player()
 {}
 
 ////////////////////////////////////////////////////////////////////////////
+// set the attributes
 void Player::set_name(std::string name)
 {
 	this->name = name;
@@ -27,6 +28,7 @@ void Player::set_y_coordinate(int coordinate, Dungeon dungeon)
 	}
 }
 ////////////////////////////////////////////////////////////////////////////
+// access the attributes
 std::string Player::$name()
 {
 	return name;

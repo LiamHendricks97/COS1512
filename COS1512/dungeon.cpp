@@ -6,7 +6,9 @@ Dungeon::Dungeon(Player player)
 	intial_place_player_into_dungeon(player);
 }
 
-/// ////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+// Get input from user
+// Might need to overload this in future
 char Dungeon::get_input()
 {
 	char move_direction = _getch() ;
@@ -56,6 +58,7 @@ void Dungeon::set_cursor_position(int x, int y)
 	SetConsoleCursorPosition(hOut, coord);
 }
 
+// choose a tile using UP, D, LEFT, R 
 void Dungeon::choose_direction(Player& player, Dungeon dungeon, int direction)
 {
 	set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
@@ -83,6 +86,7 @@ void Dungeon::choose_direction(Player& player, Dungeon dungeon, int direction)
 	std::cout << player.$symbol();
 }
 
+// Using the direction chosen, move the player onto the tile
 void Dungeon::move_into_direction(Player& player, Dungeon dungeon)
 // below code needs to be cleaned, refer to page and 'big O writing code'
 {
@@ -101,6 +105,7 @@ void Dungeon::move_into_direction(Player& player, Dungeon dungeon)
 	}
 }
 
+// Initial placement of player into the level
 void Dungeon::intial_place_player_into_dungeon(Player player)
 {
 	int x_coordinate{ player.$x_coordinate() };
@@ -109,15 +114,6 @@ void Dungeon::intial_place_player_into_dungeon(Player player)
 	level.at(y_coordinate).at(x_coordinate) = player.$symbol();
 	// need to bounds protection for initial placement
 	// need to rework to remove or make cleaner
-}
-
-void Dungeon::set_tile_blank(Player player)
-{
-	int x_coordinate{ player.$x_coordinate() };
-	int y_coordinate{ player.$y_coordinate() };
-
-	level.at(y_coordinate).at(x_coordinate) = '*';
-	// is this even needed?
 }
 
 // Creates level from scratch
