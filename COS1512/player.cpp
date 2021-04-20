@@ -1,6 +1,11 @@
 #include "player.h"
 
+// Default values
+Player::Player()
+	:health{ 100 }, exp{}, offence{ 10 }, defence{ 11 }
+{}
 
+////////////////////////////////////////////////////////////////////////////
 void Player::set_name(std::string name)
 {
 	this->name = name;
@@ -21,7 +26,7 @@ void Player::set_y_coordinate(int coordinate, Dungeon dungeon)
 		this->y_coordinate = coordinate;
 	}
 }
-/////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 std::string Player::$name()
 {
 	return name;
@@ -41,7 +46,3 @@ char Player::$symbol()
 {
 	return player_symbol;
 }
-////////////////////////////////////////
-Player::Player()
-	:health{100}, exp{}, offence{10}, defence{11}
-{}

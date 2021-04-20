@@ -24,18 +24,12 @@
     <ClCompile Include="dungeon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="manager.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dunegon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,9 +3,10 @@
 Dungeon::Dungeon(Player player)
 {
 	draw_level();
-	place_player(player);
+	place_player_dungeon(player);
 }
 
+/// ////////////////////////////////////////////////////////////////////////
 char Dungeon::get_input()
 {
 	char move_direction{};
@@ -13,10 +14,10 @@ char Dungeon::get_input()
 	return move_direction;
 }
 
-void Dungeon::test(Player& player, Dungeon& dungeon, char direction)
+void Dungeon::position_player(Player& player, Dungeon& dungeon, char direction)
 {
 	std::cout << "\033[2J\033[1;1H";
-	dungeon.set_current_pos_blank(player);
+	dungeon.set_tile_blank(player);
 	switch (direction)
 	{
 	case KEY_UP:
@@ -32,10 +33,9 @@ void Dungeon::test(Player& player, Dungeon& dungeon, char direction)
 		player.set_x_coordinate(player.$x_coordinate() + 1, dungeon);
 		break;
 	default:
-		//ntg
 		break;
 	}
-	dungeon.place_player(player);
+	dungeon.place_player_dungeon(player);
 	dungeon.display_level();
 }
 
@@ -44,43 +44,40 @@ void Dungeon::move_player(Player& player, Dungeon& dungeon)
 	bool run{ true };
 	while (run)
 	{
-		char move_direction = get_input();
-		switch (move_direction)
+		char direction = get_input();
+		switch (direction)
 		{
 		case 'q':
 			std::cout << "Thanks for playing" << std::endl;
 			run = false;
 		case KEY_UP:
-			test(player, dungeon, move_direction);
+			position_player(player, dungeon, direction);
 			break;
 		case KEY_DOWN:
-			test(player, dungeon, move_direction);
+			position_player(player, dungeon, direction);
 			break;
 		case KEY_LEFT:
-			test(player, dungeon, move_direction);
+			position_player(player, dungeon, direction);
 			break;
 		case KEY_RIGHT:
-			test(player, dungeon, move_direction);
+			position_player(player, dungeon, direction);
 			break;
 		default:
-			//ntg
 			break;
 		}
 	}
 }
 
-void Dungeon::place_player(Player player)
+
+void Dungeon::place_player_dungeon(Player player)
 {
 	int x_coordinate{ player.$x_coordinate() };
 	int y_coordinate{ player.$y_coordinate() };
 
-	if ((level.at(y_coordinate).at(x_coordinate) != '#'))
-	{
-		level.at(y_coordinate).at(x_coordinate) = player.$symbol();
-	}
+	level.at(y_coordinate).at(x_coordinate) = player.$symbol();
 }
 
-void Dungeon::set_current_pos_blank(Player player)
+void Dungeon::set_tile_blank(Player player)
 {
 	int x_coordinate{ player.$x_coordinate() };
 	int y_coordinate{ player.$y_coordinate() };
@@ -136,6 +133,7 @@ std::vector<int> Dungeon::get_player_coordinates(Player player)
 	return player_coordinates;
 }
 
+////////////////////////////////////////////////////////////////////////////
 int Dungeon::$x_axis_size()
 {
 	return x_axis_size;

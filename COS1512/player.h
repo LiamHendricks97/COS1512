@@ -30,7 +30,7 @@ public:
 	Player();
 
 	// Friend function
-	//friend std::vector <int> test();
+	//friend std::vector <int> position_player();
 
 	// Dollar sign used to express it returns a value from private access
 	std::string $name();

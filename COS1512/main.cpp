@@ -46,6 +46,13 @@ int main()
 
 
 // Useful stuff
+// forward declaration with classes when they include from one anouther:
+	// in one file, declare the class that needs to be used and put the #include at the bottom of the file
+	//eg class a;
+	// class b{};
+	// #include 'where_is_class_a'
+	// Only done to one file, other can use normal #include
+
 
 // clears screen:
 	//std::cout << "\033[2J\033[1;1H";
