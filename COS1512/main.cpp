@@ -9,12 +9,6 @@
 #include "dunegon.h"
 #include "player.h"
 
-void foo(Player& player, Dungeon dungeon)
-{
-	player.set_y_coordinate(2, dungeon);
-	std::cout << player.$y_coordinate() << std::endl;
-}
-
 int main()
 {	
 	std::cout << "Welome Hero" << std::endl;
@@ -25,25 +19,16 @@ int main()
 	Player Hero;
 	Dungeon Base(Hero);
 
-
 	Base.display_level();
 	Base.move_player(Hero, Base);
 
-	foo(Hero, Base);
-	std::cout << Hero.$y_coordinate() << std::endl;
-
-	// Heres the problem... the value is being changed within the loop (loop called Dungeon::move_player) BUT not really.
-	// As soon as the loop ends the value of the Base objects y_coordinate is set back to 10
-
-	// ITS CAUSE WE MAKING A COPY1121
-	// NEED TO PASS BY REF
 	return 0;
 }
+
+
+
+
 // print out letter one by one in console sometimes using sleep.
-
-
-
-
 
 // Useful stuff
 // forward declaration with classes when they include from one anouther:

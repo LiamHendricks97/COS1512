@@ -68,13 +68,13 @@ void Dungeon::move_player(Player& player, Dungeon& dungeon)
 	}
 }
 
-
 void Dungeon::place_player_dungeon(Player player)
 {
 	int x_coordinate{ player.$x_coordinate() };
 	int y_coordinate{ player.$y_coordinate() };
 
 	level.at(y_coordinate).at(x_coordinate) = player.$symbol();
+	// need to bounds protection for initial placement
 }
 
 void Dungeon::set_tile_blank(Player player)
