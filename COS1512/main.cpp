@@ -41,13 +41,24 @@ int main()
 	Base.cls();
 
 	Base.display_level();
-	Base.test(Hero, Base);	
+	Base.move_into_direction(Hero, Base);	//loop
 
 	Base.cls();
 	std::cout << "Thanks for playing" << std::endl;
 
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

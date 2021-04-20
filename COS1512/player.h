@@ -7,7 +7,8 @@ class Player
 {
 private:
 	// Attributes
-	// Generally speaking, attributes should only be changed by their public methods
+	// Generally speaking, attributes should only be accessed by their public methods
+	// check above comment, should it really and why?
 
 	std::string name{"OLDMAN"};
 	int health{};

@@ -2,8 +2,8 @@
 
 Dungeon::Dungeon(Player player)
 {
-	draw_initial_level();
-	place_player_dungeon(player);
+	initial_draw_level();
+	intial_place_player_into_dungeon(player);
 }
 
 /// ////////////////////////////////////////////////////////////////////////
@@ -56,10 +56,10 @@ void Dungeon::set_cursor_position(int x, int y)
 	SetConsoleCursorPosition(hOut, coord);
 }
 
-void Dungeon::test2(Player& player, Dungeon& dungeon, int direction)
+void Dungeon::choose_direction(Player& player, Dungeon dungeon, int direction)
 {
 	set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
-	std::cout <<blank_tile;
+	std::cout << blank_tile;
 
 	switch (direction)
 	{
@@ -83,45 +83,32 @@ void Dungeon::test2(Player& player, Dungeon& dungeon, int direction)
 	std::cout << player.$symbol();
 }
 
-void Dungeon::test(Player& player, Dungeon& dungeon)
-// why need DJ para?
+void Dungeon::move_into_direction(Player& player, Dungeon dungeon)
 // below code needs to be cleaned, refer to page and 'big O writing code'
 {
 	bool run{ true };
 	while (run)
 	{
 		char direction = get_input();
-		switch (direction)
+		if (direction == KEY_UP || direction == KEY_DOWN || direction == KEY_LEFT || direction == KEY_RIGHT)
 		{
-		case 'q':
-			run = false;
-			break;
-		case KEY_UP:
-			test2(player, dungeon, direction);
-			break;
-		case KEY_DOWN:
-			test2(player, dungeon, direction);
-			break;
-		case KEY_LEFT:
-			test2(player, dungeon, direction);
-			break;
-		case KEY_RIGHT:
-			test2(player, dungeon, direction);
-			break;
-		default:
-			break;
+			choose_direction(player, dungeon, direction);
 		}
-		// Change back to if statement EG if (UP DOWN LEFT RIGHT){do} else {quit}
+		else if (direction == 'q')
+		{
+			run = false;
+		}
 	}
 }
 
-void Dungeon::place_player_dungeon(Player player)
+void Dungeon::intial_place_player_into_dungeon(Player player)
 {
 	int x_coordinate{ player.$x_coordinate() };
 	int y_coordinate{ player.$y_coordinate() };
 
 	level.at(y_coordinate).at(x_coordinate) = player.$symbol();
 	// need to bounds protection for initial placement
+	// need to rework to remove or make cleaner
 }
 
 void Dungeon::set_tile_blank(Player player)
@@ -130,10 +117,11 @@ void Dungeon::set_tile_blank(Player player)
 	int y_coordinate{ player.$y_coordinate() };
 
 	level.at(y_coordinate).at(x_coordinate) = '*';
+	// is this even needed?
 }
 
 // Creates level from scratch
-void Dungeon::draw_initial_level()
+void Dungeon::initial_draw_level()
 {
 	std::vector <std::vector <char>> level(y_axis_size, std::vector<char>(x_axis_size));
 	for (int i{}; i < y_axis_size; i++)
@@ -142,11 +130,11 @@ void Dungeon::draw_initial_level()
 		{
 			if (j == 0 || i == 0 || i == y_axis_size - 1 || j == x_axis_size - 1)
 			{
-				level.at(i).at(j) = '#';
+				level.at(i).at(j) = wall_tile;
 			}
 			else
 			{
-				level.at(i).at(j) = '*';
+				level.at(i).at(j) = blank_tile;
 				// replace with empty space later
 			}
 		}
