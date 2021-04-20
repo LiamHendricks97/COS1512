@@ -9,7 +9,7 @@
 #include "dunegon.h"
 #include "player.h"
 
-void foo(Player player, Dungeon dungeon)
+void foo(Player& player, Dungeon dungeon)
 {
 	player.set_y_coordinate(2, dungeon);
 	std::cout << player.$y_coordinate() << std::endl;
@@ -37,7 +37,7 @@ int main()
 
 	// ITS CAUSE WE MAKING A COPY1121
 	// NEED TO PASS BY REF
-
+	return 0;
 }
 // print out letter one by one in console sometimes using sleep.
 

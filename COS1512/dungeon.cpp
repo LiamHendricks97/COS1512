@@ -13,7 +13,7 @@ char Dungeon::get_input()
 	return move_direction;
 }
 
-void Dungeon::test(Player player, Dungeon dungeon, char direction)
+void Dungeon::test(Player& player, Dungeon& dungeon, char direction)
 {
 
 	std::cout << "\033[2J\033[1;1H";
@@ -26,12 +26,21 @@ void Dungeon::test(Player player, Dungeon dungeon, char direction)
 	{
 		player.set_y_coordinate(player.$y_coordinate() + 1, dungeon);
 	}
+	else if (direction == KEY_LEFT)
+	{
+		player.set_x_coordinate(player.$x_coordinate() - 1, dungeon);
+
+	}
+	else if (direction == KEY_RIGHT)
+	{
+		player.set_x_coordinate(player.$x_coordinate() + 1, dungeon);
+	}
 	dungeon.place_player(player);
 	dungeon.display_level();
 
 }
 
-void Dungeon::move_player(Player player, Dungeon dungeon)
+void Dungeon::move_player(Player& player, Dungeon& dungeon)
 {
 	bool run{ true };
 	while (run)
@@ -46,24 +55,19 @@ void Dungeon::move_player(Player player, Dungeon dungeon)
 
 		else if (move_direction == KEY_UP)
 		{
-			std::cout << "\033[2J\033[1;1H";
-			dungeon.set_current_pos_blank(player);
-			player.set_y_coordinate(player.$y_coordinate() - 1, dungeon); // Move player one space up
-			dungeon.place_player(player);
-			dungeon.display_level();
-			//test(player, dungeon, move_direction);
+			test(player, dungeon, move_direction);
 		}
 		else if (move_direction == KEY_DOWN)
 		{
-			//std::cout << "DOWN";
+			test(player, dungeon, move_direction);
 		}
 		else if (move_direction == KEY_LEFT)
 		{
-			//std::cout << "LEFT";
+			test(player, dungeon, move_direction);
 		}
 		else if (move_direction == KEY_RIGHT)
 		{
-			//std::cout << "RIGHT";
+			test(player, dungeon, move_direction);
 		}
 		// convert above to a switch statement
 	}

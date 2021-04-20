@@ -23,7 +23,7 @@ private:
 public:
 	// Method prototypes
 	void set_name(std::string name);
-	void set_x_coordinate(int coordinate);
+	void set_x_coordinate(int coordinate, Dungeon dungeon);
 	void set_y_coordinate(int coordinate, Dungeon dungeon);
 
 	// Contructor
