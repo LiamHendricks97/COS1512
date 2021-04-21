@@ -37,7 +37,7 @@ int main()
 	Player Hero;
 	Dungeon Base(Hero);
 
-	std::cout << "Yes, Yes " << Hero.$name() << "!" << std::endl;
+	std::cout << "Yes, Yes " << Hero.get_name() << "!" << std::endl;
 	Base.cls();
 
 	Base.display_level();

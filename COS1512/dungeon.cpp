@@ -61,29 +61,29 @@ void Dungeon::set_cursor_position(int x, int y)
 // choose a tile using UP, D, LEFT, R 
 void Dungeon::choose_direction(Player& player, Dungeon dungeon, int direction)
 {
-	set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
+	set_cursor_position(player.get_xcoord(), player.get_ycoord());
 	std::cout << blank_tile;
 
 	switch (direction)
 	{
 	case KEY_UP:
-		player.set_y_coordinate(player.$y_coordinate() - 1, dungeon);
+		player.set_y_coordinate(player.get_ycoord() - 1, dungeon);
 		break;
 	case KEY_DOWN:
-		player.set_y_coordinate(player.$y_coordinate() + 1, dungeon);
+		player.set_y_coordinate(player.get_ycoord() + 1, dungeon);
 		break;
 	case KEY_LEFT:
-		player.set_x_coordinate(player.$x_coordinate() - 1, dungeon);
+		player.set_x_coordinate(player.get_xcoord() - 1, dungeon);
 		break;
 	case KEY_RIGHT:
-		player.set_x_coordinate(player.$x_coordinate() + 1, dungeon);
+		player.set_x_coordinate(player.get_xcoord() + 1, dungeon);
 		break;
 	default:
 		break;
 	}
 
-	set_cursor_position(player.$x_coordinate(), player.$y_coordinate());
-	std::cout << player.$symbol();
+	set_cursor_position(player.get_xcoord(), player.get_ycoord());
+	std::cout << player.get_player_symbol();
 }
 
 // Using the direction chosen, move the player onto the tile
@@ -108,10 +108,10 @@ void Dungeon::move_into_direction(Player& player, Dungeon dungeon)
 // Initial placement of player into the level
 void Dungeon::intial_place_player_into_dungeon(Player player)
 {
-	int x_coordinate{ player.$x_coordinate() };
-	int y_coordinate{ player.$y_coordinate() };
+	int x_coordinate{ player.get_xcoord() };
+	int y_coordinate{ player.get_ycoord() };
 
-	level.at(y_coordinate).at(x_coordinate) = player.$symbol();
+	level.at(y_coordinate).at(x_coordinate) = player.get_player_symbol();
 	// need to bounds protection for initial placement
 	// need to rework to remove or make cleaner
 }
@@ -158,19 +158,19 @@ void Dungeon::display_level()
 
 std::vector<int> Dungeon::get_player_coordinates(Player player)
 {
-	int x = player.$x_coordinate();
-	int y = player.$y_coordinate();
+	int x = player.get_xcoord();
+	int y = player.get_ycoord();
 	std::vector<int>player_coordinates{x, y};
 	return player_coordinates;
 }
 
 ////////////////////////////////////////////////////////////////////////////
-int Dungeon::$x_axis_size()
+int Dungeon::get_x_axis_size()
 {
 	return x_axis_size;
 }
 
-int Dungeon::$y_axis_size()
+int Dungeon::get_y_axis_size()
 {
 	return y_axis_size;
 }

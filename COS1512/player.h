@@ -23,21 +23,22 @@ private:
 
 public:
 	// Method prototypes
+	//setters
 	void set_name(std::string name);
 	void set_x_coordinate(int coordinate, Dungeon dungeon);
 	void set_y_coordinate(int coordinate, Dungeon dungeon);
 
-	// Contructor
+	// default contructor
 	Player();
 
 	// Friend function
 	//friend std::vector <int> position_player();
 
-	// Dollar sign used to express it returns a value from private access
-	std::string $name();
-	int $x_coordinate();
-	int $y_coordinate();
-	char $symbol();
+	// getters
+	std::string get_name();
+	int get_xcoord();
+	int get_ycoord();
+	char get_player_symbol();
 };
 
 

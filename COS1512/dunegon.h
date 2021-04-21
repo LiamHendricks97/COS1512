@@ -12,13 +12,14 @@ constexpr auto KEY_UP = 72;
 constexpr auto KEY_DOWN = 80;
 constexpr auto KEY_LEFT = 75;
 constexpr auto KEY_RIGHT = 77;
+// os key repeat handling, could help with faster movement along the x-axis
 
 class Dungeon
 {
 private:
-	int x_axis_size{ 50};
-	int y_axis_size{ 20};
-	char blank_tile{'*'};
+	int x_axis_size{ 50 };
+	int y_axis_size{ 25 };
+	char blank_tile{ '*' };
 	char wall_tile{ '#' };
 	std::vector <std::vector<char>> level{};
 
@@ -37,10 +38,9 @@ public:
 	void intial_place_player_into_dungeon(Player player);
 	void display_level();
 
-	void set_tile_blank(Player player);
 	std::vector<int> get_player_coordinates(Player player);
 
-	// Attribute member functions (they get the values of the attributes)
-	int $x_axis_size();
-	int $y_axis_size();
+	// getters
+	int get_x_axis_size();
+	int get_y_axis_size();
 };
