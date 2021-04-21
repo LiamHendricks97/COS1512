@@ -5,11 +5,12 @@
 // non-std
 #include <conio.h>
 #include <windows.h>
+#include <cwchar>
 
 // local
 #include "dunegon.h"
 #include "player.h"
-#include <windows.h>
+
 
 #define HARLIAMONTI
 
@@ -30,6 +31,21 @@ int main()
 	SetConsoleDisplayMode(GetStdHandle(STD_OUTPUT_HANDLE), CONSOLE_FULLSCREEN_MODE, 0);	ShowConsoleCursor(false);
 	//system("pause");
 
+	CONSOLE_FONT_INFOEX cfi;
+	cfi.cbSize = sizeof(cfi);
+	cfi.nFont = 0;
+	cfi.dwFontSize.X = 24;                   // Width of each character in the font
+	cfi.dwFontSize.Y = 24;                  // Height
+	cfi.FontFamily = FF_DONTCARE;
+	cfi.FontWeight = FW_NORMAL;
+	wcscpy_s(cfi.FaceName, L"Consolas"); // Choose your font
+	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+
+	std::cout << "Font: Consolas, Size: 24\n";
+	// above works fine but is old. Need to use 'Console Virtual Terminal Sequences'
+
+
+
 	std::cout << "Welome Hero" << std::endl;
 	std::cout << "The world is in danger and only you can save it!" << std::endl;
 	std::cout << "Great hero! What is your name?  ";
@@ -45,6 +61,18 @@ int main()
 
 	Base.cls();
 	std::cout << "Thanks for playing" << std::endl;
+
+
+
+
+
+
+
+
+
+
+
+
 
 	return 0;
 }

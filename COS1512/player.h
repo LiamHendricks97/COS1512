@@ -18,7 +18,7 @@ private:
 
 	int x_coordinate{1};
 	int y_coordinate{1};
-	char player_symbol{ 'X' };
+	char player_symbol{ 'O' };
 
 
 public:

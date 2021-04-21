@@ -17,9 +17,9 @@ constexpr auto KEY_RIGHT = 77;
 class Dungeon
 {
 private:
-	int x_axis_size{ 50 };
-	int y_axis_size{ 25 };
-	char blank_tile{ '*' };
+	int x_axis_size{ 22 };
+	int y_axis_size{ 22 };
+	char blank_tile{ ' ' };
 	char wall_tile{ '#' };
 	std::vector <std::vector<char>> level{};
 
